@@ -355,12 +355,13 @@ Get the value of `mas-mongo-ce-admin-admin` secret in the mongoce namespace.
 
 This will be the `ca.crt` from step 4.
 
-In Studio3T:
+**In Studio3T:**
 
 ![](./studio3t_server.png)
 ![](./studio3t_auth.png)
 ![](./studio3t_ssl.png)
-Testing the connection:
+
+*Testing the connection:*
 ![](./studio3T_testcon.png)
 
 If connection is successful, proceed to MAS installation. Otherwise, check the configuration again.
