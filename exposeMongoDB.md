@@ -1,6 +1,6 @@
 # Exposing a MAS Instance's MongoDB CE
 
-This doc deals with exposing a MongoDB CE instance used as a dependency of MAS deployed in Red Hat OpenShift, following the procedure written [here](https://www.linkedin.com/pulse/expose-mongdb-community-edition-redhat-openshift-daniel-istrate/). Take note that this is not an official IBM documentation, and any issues with configuration discussed here will not be supported by IBM Support.
+This doc deals with exposing a MongoDB CE instance used as a dependency of MAS deployed in Red Hat OpenShift, following the procedure written by Daniel Istrate [here](https://www.linkedin.com/pulse/expose-mongdb-community-edition-redhat-openshift-daniel-istrate/). Take note that this is not an official IBM documentation, and any issues with configuration discussed here will not be supported by IBM Support.
 
 The steps were tested using MongoDB CE v7.0.22, used by MAS v9.0.14, `ibm-operator-catalog` version `v9-250902-amd64`, OCP v4.16.45 (https://console-openshift-console.apps.ilangilang.cp.fyre.ibm.com/) . In the following steps, the MongoDB instance is configured to serve as an external MongoDB for another MAS instance v9.1.x, using the same ibm-operator-catalog version in OCP 4.16.x.
 
@@ -363,4 +363,4 @@ In Studio3T:
 Testing the connection:
 ![](./studio3T_testcon.png)
 
-If connection is successful, proceed to MAS installation. Otherwise, check the configuration again. IBM Support does not support configuration issues for externally exposed MongoDB instances (this doc is not an official IBM technote.)
+If connection is successful, proceed to MAS installation. Otherwise, check the configuration again.
