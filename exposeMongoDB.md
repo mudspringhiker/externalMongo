@@ -362,6 +362,7 @@ This will be the `ca.crt` from step 4.
 ![](./studio3t_ssl.png)
 
 *Testing the connection:*
+
 ![](./studio3T_testcon.png)
 
 If connection is successful, proceed to MAS installation. Otherwise, check the configuration again.
