@@ -1,0 +1,1 @@
+Instructions/Example of how to create external routes for MongoDB and use it for MAS installation in a separate OCP cluster.
