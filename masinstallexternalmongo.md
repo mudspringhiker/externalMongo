@@ -71,7 +71,7 @@ spec:
         -----END CERTIFICATE-----
 ```
 
-4. Finish the rest of the questions provided by the installer. A pipeline should be created. The logs will show that there won't be a mongo task.
+4. Finish the rest of the questions provided by the installer. A pipeline should be created. The logs will show that there won't be a mongo step.
 
 ![](./pipeline_start.png)
 
@@ -79,3 +79,4 @@ The sls logs will show early on if there are errors. Below shows that the mongo 
 
 ![](./pipeline_sls_done.png)
 
+...to be continued to show finished installation.
