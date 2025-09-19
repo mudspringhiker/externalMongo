@@ -1,4 +1,4 @@
-## Instructions/Example of Configuring MongoDB Deployed in OCP and Using it for MAS in Another OCP Cluster
+## Instructions/Example of Configuring MongoDB Deployed in OCP and Using it for Installing MAS in Another OCP Cluster
 
 ### Contents
 
