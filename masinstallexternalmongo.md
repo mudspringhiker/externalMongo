@@ -8,7 +8,7 @@ The following are the steps in installing MAS using an external mongodb instance
 [ibmmas/cli:15.6.0]mascli$ ls /mnt/home/licenses/license.dat
 /mnt/home/licenses/license.dat
 ```
-- In this example, the configuration file for the external mongodb will be created during the installation. A copy of the mongodb certificate should be in hand and accessible in the MAS CLI container.
+- In this example, the configuration file for the external mongodb will be created during the installation. A copy of the mongodb certificate (obtained in step 4 [here](./exposeMongoDB.md)) should be in hand and accessible in the MAS CLI container.
 
 ```
 [ibmmas/cli:15.6.0]mascli$ ls /mnt/home/externalmongodemo
