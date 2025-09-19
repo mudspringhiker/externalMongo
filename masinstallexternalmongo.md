@@ -71,3 +71,10 @@ spec:
         -----END CERTIFICATE-----
 ```
 
+4. Finish the rest of the questions provided by the installer. A pipeline should be created. The logs will show that there won't be a mongo task.
+
+![](./pipeline_start.png)
+
+If there are any errors in relation to the mongo configuration, the sls logs will show early on if there are errors. Below shows that the mongo configuration was ok as the sls step was finished.
+
+![](./pipeline_sls_done.png)
