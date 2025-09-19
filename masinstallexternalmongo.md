@@ -34,8 +34,8 @@ metadata:
   namespace: mas-demo-core
 
 data:
-  username: "YWRtaW4="
-  password: "cjhYOTNESE5hdlZhaHhVOQ=="
+  username: "xxx"
+  password: "xxx"
 ---
 # Mongo configuration for MAS
 apiVersion: config.mas.ibm.com/v1
