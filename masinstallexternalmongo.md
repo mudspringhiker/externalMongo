@@ -16,4 +16,58 @@ ca.crt
 ```
 2. Log in to the OCP cluster and run `mas install`.
 
+3. When getting to number 12, "Configure MongoDb", provide 'n' as answer to question "Create MongoDB cluster using MongoDb Community Edition Operator? [y/n]". Provide the information being prompted.
+
+![](./mongoconfig_cli.png)
+
+The following yaml file is generated in the provided path above.
+
+```
+mas@controlav1:~/externalmongodemo$ cat mongodb-system.yaml
+---
+# Mongo credentials for MAS
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: mongodb-demo-admin
+  namespace: mas-demo-core
+
+data:
+  username: "YWRtaW4="
+  password: "cjhYOTNESE5hdlZhaHhVOQ=="
+---
+# Mongo configuration for MAS
+apiVersion: config.mas.ibm.com/v1
+kind: MongoCfg
+metadata:
+  name: demo-mongo-system
+  namespace: mas-demo-core
+  labels:
+    mas.ibm.com/configScope: system
+    mas.ibm.com/instanceId: demo
+
+spec:
+  displayName: "External MongoDB in 'mas-demo-core' namespace"
+  type: external
+  config:
+    configDb: admin
+    retryWrites: true
+    authMechanism: DEFAULT
+    credentials:
+      secretName: mongodb-demo-admin
+    hosts:
+     - host: mas-mongo-ce-0.mongoce.apps.ilangilang.cp.fyre.ibm.com
+       port: 443
+     - host: mas-mongo-ce-1.mongoce.apps.ilangilang.cp.fyre.ibm.com
+       port: 443
+     - host: mas-mongo-ce-2.mongoce.apps.ilangilang.cp.fyre.ibm.com
+       port: 443
+  certificates:
+    - alias: "part1"
+      crt: |
+        -----BEGIN CERTIFICATE-----
+        <snip>
+        -----END CERTIFICATE-----
+```
 
