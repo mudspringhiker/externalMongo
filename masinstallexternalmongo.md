@@ -14,6 +14,8 @@ The following are the steps in installing MAS using an external mongodb instance
 [ibmmas/cli:15.6.0]mascli$ ls /mnt/home/externalmongodemo
 ca.crt
 ```
+- MongoDB credentials, see step 9, data needed to test the [exposed MongoDB instance](./exposeMongoDB.md).
+
 2. Log in to the OCP cluster and run `mas install`.
 
 3. When getting to number 12, "Configure MongoDb", provide 'n' as answer to question "Create MongoDB cluster using MongoDb Community Edition Operator? [y/n]". Provide the information being prompted.
