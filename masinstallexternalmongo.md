@@ -75,6 +75,7 @@ spec:
 
 ![](./pipeline_start.png)
 
-If there are any errors in relation to the mongo configuration, the sls logs will show early on if there are errors. Below shows that the mongo configuration was ok as the sls step was finished.
+The sls logs will show early on if there are errors. Below shows that the mongo configuration was ok as the sls step has finished successfully.
 
 ![](./pipeline_sls_done.png)
+
