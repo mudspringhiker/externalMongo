@@ -80,5 +80,3 @@ spec:
 The sls logs will show early on if there are errors. Below shows that the mongo configuration was ok as the sls step has finished successfully.
 
 ![](./pipeline_sls_done.png)
-
-...to be continued to show finished installation.
