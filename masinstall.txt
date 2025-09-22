@@ -1,0 +1,377 @@
+## CLI Installation MAS Using an External MongoDB
+
+This shows an example of installing MAS using an external mongo configured as described [here](./externalmongodemo.md). 
+
+MAS CLI version: 15.5.0
+OCP version used: 4.18
+Note: for some reason, the cli only shows from May to August catalogs. For some reason, this only occurs if the OCP if v4.18 for me. Using OCP 4.16, the September catalog is available.
+
+[ibmmas/cli:15.5.0]mascli$ mas install
+
+IBM Maximo Application Suite Admin CLI v15.5.0
+Powered by https://github.com/ibm-mas/ansible-devops/ and https://tekton.dev/
+
+
+1) Set Target OpenShift Cluster
+Already connected to OCP Cluster:
+ https://console-openshift-console.apps.o1-940480.cp.fyre.ibm.com
+
+Proceed with this cluster? [y/n] y
+
+2) Choose Install Mode
+There are two flavours of the interactive install to choose from: Simplified and Advanced.  The simplified option will present fewer dialogs, but you lose the ability to configure the following aspects of the installation:
+ - Configure installation namespaces
+ - Provide pod templates
+ - Configure Single Sign-On (SSO) settings - Configure whether to trust well-known certificate authorities by default (defaults to enabled)
+ - Configure whether the Guided Tour feature is enabled (defaults to enabled)
+ - Configure whether special characters are allowed in usernames and userids (defaults to disabled)
+ - Configure a custom domain, DNS integrations, and manual certificates
+ - Customize Maximo Manage database settings (schema, tablespace, indexspace)
+ - Customize Maximo Manage server bundle configuration (defaults to "all" configuration)
+ - Enable optional Maximo Manage integration Cognos Analytics and Watson Studio Local
+ - Enable optional Maximo Predict integration with SPSS
+ - Enable optional IBM Turbonomic integration
+ - Enable optional Real Estate and Facilities configurations
+ - Customize Db2 node affinity and tolerations, memory, cpu, and storage settings (when using the IBM Db2 Universal Operator)
+ - Choose alternative Apache Kafka providers (default to Strimzi)
+ - Customize Grafana storage settings
+Show advanced installation options? [y/n] n
+
+3) IBM Maximo Operator Catalog Selection
+The catalog you choose dictates the version of everything that is installed, with Maximo Application Suite this is the only version you need to remember; all other versions are determined by this choice.
+Older catalogs can still be used, but we recommend using an older version of the CLI that aligns with the release date of the catalog.
+ - Learn more: https://ibm-mas.github.io/cli/catalogs/
+
+Supported Catalogs:
+ - August 2025 Update
+   https://ibm-mas.github.io/cli/catalogs/v9-250828-amd64
+ - July 2025 Update
+   https://ibm-mas.github.io/cli/catalogs/v9-250731-amd64
+ - June 2025 Update
+   https://ibm-mas.github.io/cli/catalogs/v9-250624-amd64
+ - May 2025 Update
+   https://ibm-mas.github.io/cli/catalogs/v9-250501-amd64
+
+Select catalog v9-250828-amd64
+
+Catalog Details
+Catalog Image:         icr.io/cpopen/ibm-maximo-operator-catalog:v9-250828-amd64
+Catalog Digest:        sha256:0a24540abbb65155d3dfde68fe57a777aae785127ebb34a272614a06710caaa2
+MAS Releases:          9.1-feature, 9.1, 9.0, 8.11, 8.10
+Cloud Pak for Data:    5.1.3
+MongoDb:               7.0.22
+
+Two types of release are available:
+ - GA releases of Maximo Application Suite are supported under IBM's standard 3+1+3 support lifecycle policy.
+ - 'Feature' releases allow early access to new features for evaluation in non-production environments and are only supported through to the next GA release.
+
+┌────────────┬───────────────┬───────┬────────┬─────────┬─────────┐
+│            │ 9.1-feature   │ 9.1   │ 9.0    │ 8.11    │ 8.10    │
+├────────────┼───────────────┼───────┼────────┼─────────┼─────────┤
+│ Core       │ 9.1.0         │ 9.1.2 │ 9.0.14 │ 8.11.25 │ 8.10.28 │
+├────────────┼───────────────┼───────┼────────┼─────────┼─────────┤
+│ Manage     │ 9.1.0         │ 9.1.2 │ 9.0.16 │ 8.7.23  │ 8.6.29  │
+├────────────┼───────────────┼───────┼────────┼─────────┼─────────┤
+│ IoT        │ 9.0.11        │ 9.1.2 │ 9.0.11 │ 8.8.21  │ 8.7.25  │
+├────────────┼───────────────┼───────┼────────┼─────────┼─────────┤
+│ Monitor    │ 9.0.12        │ 9.1.2 │ 9.0.12 │ 8.11.20 │ 8.10.22 │
+├────────────┼───────────────┼───────┼────────┼─────────┼─────────┤
+│ Assist     │ 9.0.8         │ 9.1.1 │ 9.0.8  │ 8.8.7   │ 8.7.8   │
+├────────────┼───────────────┼───────┼────────┼─────────┼─────────┤
+│ Optimizer  │ 9.1.0         │ 9.1.3 │ 9.0.14 │ 8.5.20  │ 8.4.21  │
+├────────────┼───────────────┼───────┼────────┼─────────┼─────────┤
+│ Predict    │ 9.0.8         │ 9.1.1 │ 9.0.8  │ 8.9.11  │ 8.8.9   │
+├────────────┼───────────────┼───────┼────────┼─────────┼─────────┤
+│ Inspection │ 9.1.0         │ 9.1.1 │ 9.0.11 │ 8.9.14  │ 8.8.4   │
+├────────────┼───────────────┼───────┼────────┼─────────┼─────────┤
+│ Facilities │               │ 9.1.2 │        │         │         │
+└────────────┴───────────────┴───────┴────────┴─────────┴─────────┘
+Select release 9.1
+
+4) License Terms
+To continue with the installation, you must accept the license terms:
+ - https://ibm.biz/MAS91-License
+ - https://ibm.biz/MAXIT91-License
+ - https://ibm.biz/MAXESRI91-License
+Do you accept the license terms? [y/n] y
+
+5) Configure Storage Class Usage
+Maximo Application Suite and it's dependencies require storage classes that support ReadWriteOnce (RWO) and ReadWriteMany (RWX) access modes:
+  - ReadWriteOnce volumes can be mounted as read-write by multiple pods on a single node.
+  - ReadWriteMany volumes can be mounted as read-write by multiple pods across many nodes.
+
+Storage provider auto-detected: NFS Client
+  - Storage class (ReadWriteOnce): nfs-client
+  - Storage class (ReadWriteMany): nfs-client
+Use the auto-detected storage classes? [y/n] y
+
+6) Configure AppPoint Licensing
+By default the MAS instance will be configured to use a cluster-shared License, this provides a shared pool of AppPoints available to all MAS instances on the cluster.
+
+License file /mnt/home/licenses/license.dat
+Contact e-mail address alona.varshal@ibm.com
+Contact first name alona
+Contact last name varshal
+
+7) Configure IBM Container Registry
+IBM entitlement key ****************************************************************************************************************************************************************************
+********************
+
+8) Configure MAS Instance
+Instance ID restrictions:
+ - Must be 3-12 characters long
+ - Must only use lowercase letters, numbers, and hypen (-) symbol
+ - Must start with a lowercase letter
+ - Must end with a lowercase letter or a number
+Instance ID demo
+
+Workspace ID restrictions:
+ - Must be 3-12 characters long
+ - Must only use lowercase letters and numbers
+ - Must start with a lowercase letter
+Workspace ID demo
+
+Workspace display name restrictions:
+ - Must be 3-300 characters long
+Workspace name demo
+
+9) Configure Operational Mode
+Maximo Application Suite can be installed in a non-production mode for internal development and testing, this setting cannot be changed after installation:
+ - All applications, add-ons, and solutions have 0 (zero) installation AppPoints in non-production installations.
+ - These specifications are also visible in the metrics that are shared with IBM and in the product UI.
+
+  1. Production
+  2. Non-Production
+Operational Mode 1
+
+10) Application Selection
+Install IoT? [y/n] n
+Install Manage? [y/n] n
+Manage foundation installs the following capabilities: User, Security groups, Application configurator and Mobile configurator.
+Install Assist? [y/n] n
+Install Optimizer? [y/n] n
+Install Visual Inspection? [y/n] n
+Install Real Estate and Facilities? [y/n] n
+
+11) Configure Maximo Manage foundation
+Customize your Manage foundation installation, refer to the product documentation for more information
+
+11.1) Maximo Manage foundation Settings - Other
+Configure additional settings:
+  - Base and additional languages
+  - Server timezone
+Configure Additional Settings? [y/n] n
+
+12) Configure MongoDb
+The installer can setup mongoce in your OpenShift cluster (available only for amd64) or you may choose to configure MAS to use an existing mongodb
+Create MongoDb cluster using MongoDb Community Edition Operator? [y/n] n
+Select Local configuration directory /mnt/home/externalmongodemo
+Searching for system mongodb configuration file in /mnt/home/externalmongodemo/mongodb-system.yaml ...
+Expected file (/mnt/home/externalmongodemo/mongodb-system.yaml) was not found, generating a valid system mongodb configuration file now ...
+Configuration Display Name external mongodb conf
+MongoDb Hosts (comma-separated list) mas-mongo-ce-0.mongoce.apps.ilangilang.cp.fyre.ibm.com:443,mas-mongo-ce-1.mongoce.apps.ilangilang.cp.fyre.ibm.com:443,mas-mongo-ce-2.mongoce.apps.ilangilan
+g.cp.fyre.ibm.com:443
+MongoDb Username admin
+MongoDb Password ****************
+Path to certificate file /mnt/home/externalmongodemo/ca.crt
+
+13) Configure Databases
+The installer can setup one or more IBM Db2 instances in your OpenShift cluster for the use of applications that require a JDBC datasource (IoT, Manage foundation, Monitor, & Predict, Real Estate and Facilities) or you may choose to configure MAS to use an existing database
+
+13.1) Database Configuration for Maximo Manage foundation
+Maximo Manage foundation can be configured to share the system Db2 instance or use it's own dedicated database:
+ - Use of a shared instance has a significant footprint reduction but is only recommended for development/test/demo installs
+ - In most production systems you will want to use a dedicated database
+ - IBM Db2, Oracle Database, & Microsoft SQL Server are all supported database options
+Create Manage foundation dedicated Db2 instance using the IBM Db2 Universal Operator? [y/n] y
+Available Db2 instance types for Manage foundation:
+  1. DB2 Warehouse (Default option)
+  2. DB2 Online Transactional Processing (OLTP)
+Select the Manage foundation dedicated DB2 instance type 1
+
+14) Additional Configuration
+Additional resource definitions can be applied to the OpenShift Cluster during the MAS configuration step
+The primary purpose of this is to apply configuration for Maximo Application Suite itself, but you can use this to deploy ANY additional resource into your cluster
+The following additional configurations will be applied:
+ - mongodb-system.yaml
+Are these the correct configuration files to apply? [y/n] y
+
+15) Non-Interactive Install Command
+Save and re-use the following script to re-run this install without needing to answer the interactive prompts again
+
+export IBM_ENTITLEMENT_KEY=x
+mas install --mas-catalog-version v9-250828-amd64 --ibm-entitlement-key $IBM_ENTITLEMENT_KEY \
+  --mas-channel 9.1.x --mas-instance-id demo --mas-workspace-id demo --mas-workspace-name "demo" \
+  --additional-configs "/mnt/home/externalmongodemo" \
+  --storage-class-rwo "nfs-client" --storage-class-rwx "nfs-client" \
+  --storage-pipeline "nfs-client" --storage-accessmode "ReadWriteMany" \
+  --license-file "/mnt/home/licenses/license.dat" \
+  --uds-email "alona.varshal@ibm.com" --uds-firstname "alona" --uds-lastname "varshal" \
+  --manage-channel "9.1.x" \
+  --manage-jdbc "workspace-application" \
+  --manage-components "" \
+  --db2-manage \
+  --db2-channel "v110509.0" \
+  --db2-namespace "db2u" \
+  --db2-type "db2wh" \
+  --db2-cpu-requests "4000m" \
+  --db2-cpu-limits "6000m" \
+  --db2-memory-requests "8Gi" \
+  --db2-memory-limits "12Gi" \
+  --db2-backup-storage "100Gi" \
+  --db2-data-storage "100Gi" \
+  --db2-logs-storage "100Gi" \
+  --db2-meta-storage "20Gi" \
+  --db2-temp-storage "100Gi" \
+  --accept-license --no-confirm
+
+16) Review Settings
+Connected to:
+ - https://console-openshift-console.apps.o1-940480.cp.fyre.ibm.com
+
+16.1) Pipeline Configuration
+  Service Account ......................... Default
+  Image Pull Policy ....................... Default
+  Skip Pre-Install Healthcheck ............ No
+
+16.2) OpenShift Container Platform
+  Worker Node Architecture ................ amd64
+  Storage Class Provider .................. nfs
+  ReadWriteOnce Storage Class ............. nfs-client
+  ReadWriteMany Storage Class ............. nfs-client
+  Certificate Manager ..................... redhat
+  Cluster Ingress Certificate Secret ...... Default
+  Single Node OpenShift ................... No
+
+16.3) IBM Data Reporter Operator (DRO) Configuration
+  Contact e-mail .......................... alona.varshal@ibm.com
+  First name .............................. alona
+  Last name ............................... varshal
+  Install Namespace ....................... Default
+
+16.4) IBM Suite License Service
+  Namespace ............................... Default
+  Subscription Channel .................... 3.x
+  IBM Open Registry ....................... icr.io/cpopen
+  License File ............................ /mnt/home/licenses/license.dat
+
+16.5) IBM Maximo Application Suite
+  Instance ID ............................. demo
+  Workspace ID ............................ demo
+  Workspace Name .......................... demo
+
+  Operational Mode ........................ Production
+  Install Mode ............................ Connected Install
+
+  Configure Suite to run in IPV6 .......... Default
+
+  Manual Certificates ..................... Not Configured
+
+  Enable Guided Tour ...................... Default
+
+  Catalog Version ......................... v9-250828-amd64
+  Subscription Channel .................... 9.1.x
+
+  IBM Entitled Registry ................... cp.icr.io/cp
+  IBM Open Registry ....................... icr.io/cpopen
+
+  Trust Default Cert Authorities .......... True
+
+  Additional Config ....................... /mnt/home/externalmongodemo
+  Pod Templates ........................... Not Configured
+
+16.6) IBM Maximo Application Suite Applications
+  IoT ..................................... Do Not Install
+  Monitor ................................. Do Not Install
+  Manage foundation ....................... 9.1.x
+  + Components
+    + ACM ................................. Disabled
+    + Aviation ............................ Disabled
+    + Civil Infrastructure ................ Disabled
+    + Envizi .............................. Disabled
+    + Health .............................. Disabled
+    + HSE ................................. Disabled
+    + Maximo IT ........................... Disabled
+    + Nuclear ............................. Disabled
+    + Oil & Gas ........................... Disabled
+    + Connector for Oracle ................ Disabled
+    + Connector for SAP ................... Disabled
+    + Service Provider .................... Disabled
+    + Spatial ............................. Disabled
+    + Strategize .......................... Disabled
+    + Transportation ...................... Disabled
+    + Tririga ............................. Disabled
+    + Utilities ........................... Disabled
+    + Workday Applications ................ Disabled
+    + AIP ................................. Disabled
+    + Vegetation Management ............... Disabled
+  + Upgrade Type .......................... Default
+  + Server bundle size .................... Default
+  + Enable JMS queues ..................... Default
+  + Server Timezone ....................... Default
+  + Base Language ......................... Default
+  + Additional Languages .................. Default
+  + Database Settings
+    + Schema .............................. Default
+    + Username ............................ Default
+    + Tablespace .......................... Default
+    + Indexspace .......................... Default
+  Loc Srv Esri (arcgis) ................... Do Not Install
+  Predict ................................. Do Not Install
+  Optimizer ............................... Do Not Install
+  Assist .................................. Do Not Install
+  Visual Inspection ....................... Do Not Install
+  Facilities .............................. Do Not Install
+
+16.7) MongoDb
+  Type .................................... BYO (mongodb-system.yaml)
+
+16.8) IBM Db2 Univeral Operator Configuration
+  System Instance ......................... Do Not Install
+  Dedicated Manage Instance ............... Install
+   - Type ................................. db2wh
+   - Timezone ............................. Default
+
+  Install Namespace ....................... db2u
+  Subscription Channel .................... v110509.0
+
+  CPU Request ............................. 4000m
+  CPU Limit ............................... 6000m
+  Memory Request .......................... 8Gi
+  Memory Limit  ........................... 12Gi
+
+  Meta Storage ............................ 20Gi
+  Data Storage ............................ 100Gi
+  Backup Storage .......................... 100Gi
+  Temp Storage ............................ 100Gi
+  Transaction Logs Storage ................ 100Gi
+
+  Node Affinity ........................... None
+  Node Tolerations ........................ None
+
+16.9) Cloud Object Storage
+  Type .................................... None
+
+16.10) Grafana
+  Install Grafana ......................... Install
+
+16.11) Turbonomic
+  Turbonomic Integration .................. Disabled
+
+16.12) Install Process
+  Wait for PVCs to bind ................... Yes
+
+Please carefully review your choices above, correcting mistakes now is much easier than after the install has begun
+Proceed with these settings? [y/n] y
+
+17) Launch Install
+✅️ OpenShift Pipelines Operator is installed and ready to use
+✅️ Namespace is ready (mas-demo-pipelines)
+✅️ MAS CLI image deployment test completed
+✅️ Latest Tekton definitions are installed (v15.5.0)
+✅️ PipelineRun for demo install submitted
+
+View progress:
+  https://console-openshift-console.apps.o1-940480.cp.fyre.ibm.com/k8s/ns/mas-demo-pipelines/tekton.dev~v1beta1~PipelineRun/demo-install-250919-0301
+
+[ibmmas/cli:15.5.0]mascli$ exit
