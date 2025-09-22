@@ -2,7 +2,7 @@
 
 This document deals with exposing a MongoDB CE instance used as a dependency of MAS deployed in Red Hat OpenShift, following the procedure written by Daniel Istrate [here](https://www.linkedin.com/pulse/expose-mongdb-community-edition-redhat-openshift-daniel-istrate/). 
 
-The steps were tested using MongoDB CE v7.0.22, used by MAS v9.0.14, `ibm-operator-catalog` version `v9-250902-amd64`, OCP v4.16.45 (console-openshift-console.apps.ilangilang.cp.fyre.ibm.com in this example, please do not attempt to access it) . In the following steps, the MongoDB instance is configured to serve as an external MongoDB for another MAS instance v9.1.x, using the same ibm-operator-catalog version in OCP 4.16.x.
+The steps were tested using MongoDB CE v7.0.22, used by MAS v9.0.14, `ibm-operator-catalog` version `v9-250902-amd64`, OCP v4.16.45 (console-openshift-console.apps.ilangilang.cp.fyre.ibm.com in this example, please do not attempt to access it). In the following steps, the MongoDB instance is configured to serve as an external MongoDB for another MAS instance v9.1.x, using the same ibm-operator-catalog version in OCP 4.16.x. The yamls of the resources modifed are shown for the env, console-openshift-console.apps.ilangilang.cp.fyre.ibm.com. 
 
 It is assumed that the mongodb instance is in good status. The mongoDBCommunity CR is in 'Running' status. All `mas-mongo-ce` replicas are up and running.
 
@@ -231,6 +231,7 @@ spec:
     - ocroute: mas-mongo-ce-2.mongoce.apps.example.com:443
       ocsvc: 'mas-mongo-ce-2.mongoce.svc.cluster.local:443'
 ```
+Resulting MongoDBCommunity CR:
 
 ```yaml
 apiVersion: mongodbcommunity.mongodb.com/v1

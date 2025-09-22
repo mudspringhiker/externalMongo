@@ -1,6 +1,6 @@
 # Installing MAS with an External MongoDB
 
-The following are the steps in installing MAS using an external mongodb instance deployed in a separate OpenShift cluster (where another MAS instance is also deployed and using that mongodb instance as a dependency), following this [document](https://www.ibm.com/support/pages/installing-mas-using-ibm-mas-cli-utility). It assumes that the [IBM MAS CLI](https://ibm-mas.github.io/cli/) container has been created. In the test, MAS CLI v15.5.0 was used to install MAS v9.1.x on OCP cluster is v4.18, `ibm-operator-catalog` version `v9-250828-amd64`.
+The following are the steps in installing MAS using an external mongodb instance deployed in a separate OpenShift cluster (where another MAS instance is also deployed and using that mongodb instance as a dependency), following this [document](https://www.ibm.com/support/pages/installing-mas-using-ibm-mas-cli-utility). It assumes that the [IBM MAS CLI](https://ibm-mas.github.io/cli/) container has been created. In the test, MAS CLI v15.5.0 was used to install MAS v9.1.x on OCP cluster is v4.18, `ibm-operator-catalog` version `v9-250828-amd64`. For a full copy of the interactive installation, refer to [masinstall.txt](./masinstall.txt).
 
 1. Prepare the requirements for the installation.
 - The MAS license file should be the same as the one from the external mongodb.

@@ -4,7 +4,7 @@ This shows an example of installing MAS using an external mongo configured as de
 
 MAS CLI version: 15.5.0
 OCP version used: 4.18
-Note: for some reason, the cli only shows from May to August catalogs. For some reason, this only occurs if the OCP if v4.18 for me. Using OCP 4.16, the September catalog is available.
+Note: for some reason, the cli only shows from May to August catalogs.
 
 [ibmmas/cli:15.5.0]mascli$ mas install
 
